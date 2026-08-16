@@ -1,0 +1,894 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  line-height: 1.5;
+  color: #374151;
+  background: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #e0e7ff 50%,
+    #f3e8ff 100%
+  );
+  min-height: 100vh;
+}
+
+/* Page management */
+.page {
+  display: none;
+  min-height: 100vh;
+}
+
+.page.active {
+  display: block;
+}
+
+/* Landing Page Styles */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.bg-decoration {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(37, 99, 235, 0.1),
+    rgba(147, 51, 234, 0.1)
+  );
+}
+
+.bg-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(64px);
+}
+
+.blob-1 {
+  top: 40px;
+  left: 40px;
+  width: 288px;
+  height: 288px;
+  background: rgba(96, 165, 250, 0.2);
+}
+
+.blob-2 {
+  bottom: 40px;
+  right: 40px;
+  width: 384px;
+  height: 384px;
+  background: rgba(168, 85, 247, 0.2);
+}
+
+.hero-content {
+  position: relative;
+  padding: 0 24px;
+}
+
+.hero-center {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 0 128px;
+  text-align: center;
+}
+
+.hero-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.hero-icon > div {
+  position: relative;
+}
+
+.icon-blur {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  border-radius: 50%;
+  filter: blur(16px);
+  opacity: 0.2;
+}
+
+.icon-container {
+  position: relative;
+  background: white;
+  padding: 24px;
+  border-radius: 50%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.icon-container i {
+  width: 64px;
+  height: 64px;
+  color: #2563eb;
+  stroke-width: 1.5;
+}
+
+.hero-title {
+  font-size: 3.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  background: linear-gradient(
+    to right,
+    #2563eb,
+    #4f46e5,
+    #9333ea
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 24px;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 512px;
+  margin: 0 auto 48px;
+  line-height: 1.75;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+@media (min-width: 640px) {
+  .login-buttons {
+    flex-direction: row;
+  }
+}
+
+.login-btn {
+  position: relative;
+  padding: 24px 48px;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 280px;
+}
+
+@media (min-width: 640px) {
+  .login-btn {
+    width: auto;
+  }
+}
+
+.student-btn {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+}
+
+.professor-btn {
+  background: linear-gradient(to right, #9333ea, #7c3aed);
+}
+
+.btn-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.student-btn .btn-overlay {
+  background: linear-gradient(to right, #1d4ed8, #1e40af);
+}
+
+.professor-btn .btn-overlay {
+  background: linear-gradient(to right, #7c3aed, #6d28d9);
+}
+
+.login-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.4);
+}
+
+.login-btn:hover .btn-overlay {
+  opacity: 1;
+}
+
+.btn-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-content i {
+  width: 24px;
+  height: 24px;
+}
+
+.btn-content span {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.feature-icon.blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.feature-icon.purple {
+  background: linear-gradient(135deg, #a855f7, #9333ea);
+}
+
+.feature-icon.indigo {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.feature-icon i {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.feature-card p {
+  color: #6b7280;
+  line-height: 1.75;
+}
+
+/* Dashboard Styles */
+.dashboard-header {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-icon {
+  background: linear-gradient(135deg, #3b82f6, #a855f7);
+}
+
+.professor-icon {
+  background: linear-gradient(135deg, #a855f7, #3b82f6);
+}
+
+.header-icon i {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.student-title {
+  background: linear-gradient(to right, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.professor-title {
+  background: linear-gradient(to right, #9333ea, #2563eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  color: #6b7280;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  color: #1f2937;
+  background: #f3f4f6;
+}
+
+.logout-btn i {
+  width: 16px;
+  height: 16px;
+}
+
+.dashboard-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Alert Styles */
+.alert-container {
+  margin-bottom: 32px;
+}
+
+.alert {
+  border: 1px solid rgba(251, 146, 60, 0.2);
+  background: rgba(255, 237, 213, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.alert i {
+  width: 16px;
+  height: 16px;
+  color: #ea580c;
+  margin-top: 2px;
+}
+
+.alert-title {
+  font-weight: 600;
+  color: #9a3412;
+  margin-bottom: 8px;
+}
+
+.alert-description {
+  color: #c2410c;
+}
+
+.alert-subjects {
+  margin-top: 8px;
+}
+
+.alert-subjects div {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+/* Overview Cards */
+.overview-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .overview-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.overview-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.card-header {
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.card-value.blue {
+  color: #2563eb;
+}
+.card-value.purple {
+  color: #9333ea;
+}
+.card-value.green {
+  color: #059669;
+}
+.card-value.orange {
+  color: #ea580c;
+}
+.card-value.indigo {
+  color: #4f46e5;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.card-meta i {
+  width: 12px;
+  height: 12px;
+}
+
+/* Analytics and Attendance Cards */
+.analytics-card,
+.attendance-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: 24px 24px 0;
+}
+
+.card-title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.card-title-with-icon i {
+  width: 20px;
+  height: 20px;
+  color: #2563eb;
+}
+
+.professor-dashboard .card-title-with-icon i {
+  color: #9333ea;
+}
+
+.card-description {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.card-content {
+  padding: 24px;
+}
+
+/* Subject Analytics */
+.subject-analytics {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.subject-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.subject-info h3 {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.subject-info p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.subject-stats {
+  text-align: right;
+}
+
+.percentage {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.percentage.good {
+  color: #059669;
+}
+.percentage.low {
+  color: #ea580c;
+}
+
+.class-count {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.progress-labels .required {
+  font-weight: 500;
+}
+
+.action-required {
+  background: #fef3cd;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.action-required div {
+  font-size: 0.875rem;
+  color: #92400e;
+}
+
+/* Attendance Controls */
+.attendance-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .attendance-controls {
+    flex-direction: row;
+  }
+}
+
+.control-group {
+  flex: 1;
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.control-group select,
+.control-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+  outline: none;
+  border-color: #9333ea;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+}
+
+.quick-dates {
+  margin-bottom: 24px;
+}
+
+.quick-dates label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.quick-date-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-date-btn {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-date-btn.active {
+  background: #9333ea;
+  color: white;
+}
+
+.quick-date-btn:not(.active) {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.quick-date-btn:not(.active):hover {
+  background: #e5e7eb;
+}
+
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.bulk-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bulk-btn:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.bulk-btn i {
+  width: 16px;
+  height: 16px;
+}
+
+/* Attendance Table */
+.attendance-table {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-header {
+  background: #f9fafb;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-header h3 {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.table-body {
+  background: white;
+}
+
+.student-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.student-row:last-child {
+  border-bottom: none;
+}
+
+.student-row:hover {
+  background: #f9fafb;
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.student-details h4 {
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.student-details p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.attendance-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.attendance-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.attendance-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.attendance-label.present {
+  color: #059669;
+}
+
+.attendance-label.absent {
+  color: #6b7280;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 0;
+  color: #6b7280;
+}
+
+.empty-state i {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  opacity: 0.4;
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .hero-center {
+    padding: 40px 0 64px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .dashboard-content {
+    padding: 24px 16px;
+  }
+
+  .header-content {
+    padding: 16px;
+  }
+}
