@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttendanceHub - Student Attendance Monitoring</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <div class="hero-section">
+            <!-- Background decoration -->
+            <div class="bg-decoration"></div>
+            <div class="bg-blobs">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-center">
+                    <div class="hero-icon">
+                        <div class="icon-blur"></div>
+                        <div class="icon-container">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">AttendanceHub</h1>
+                    
+                    <p class="hero-description">
+                        Smart attendance monitoring and analytics platform for educational institutions. 
+                        Track, analyze, and improve student engagement with powerful insights.
+                    </p>
+
+                    <!-- Login Buttons -->
+                    <div class="login-buttons">
+                        <button class="login-btn student-btn" onclick="handleLogin('student')">
+                            <div class="btn-overlay"></div>
+                            <div class="btn-content">
+                                <i data-lucide="graduation-cap"></i>
+                                <span>Login as Student</span>
+                            </div>
+                        </button>
+
+                        <button class="login-btn professor-btn" onclick="handleLogin('professor')">
+                            <div class="btn-overlay"></div>
+                            <div class="btn-content">
+                                <i data-lucide="users"></i>
+                                <span>Login as Professor</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Features Grid -->
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon blue">
+                                <i data-lucide="bar-chart-3"></i>
+                            </div>
+                            <h3>Smart Analytics</h3>
+                            <p>Get detailed insights into attendance patterns with interactive charts and personalized analytics.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon purple">
+                                <i data-lucide="check-circle"></i>
+                            </div>
+                            <h3>Easy Tracking</h3>
+                            <p>Streamlined attendance marking system with date-wise tracking and student management.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon indigo">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <h3>Multi-Role Access</h3>
+                            <p>Separate dashboards for students and professors with role-specific features and permissions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="student-dashboard" class="page">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="header-content">
+                <div class="header-info">
+                    <div class="header-icon student-icon">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div>
+                        <h1 class="header-title student-title">Student Dashboard</h1>
+                        <p class="header-subtitle">Welcome back, Alice Johnson</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i data-lucide="log-out"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Low Attendance Alert -->
+            <div id="attendance-alert" class="alert-container" style="display: none;">
+                <div class="alert">
+                    <i data-lucide="alert-triangle"></i>
+                    <div class="alert-content">
+                        <div class="alert-title">Attendance Alert</div>
+                        <div class="alert-description">
+                            Your attendance is below 75% in the following subjects:
+                            <div id="low-attendance-subjects" class="alert-subjects"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Cards -->
+            <div class="overview-cards">
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Overall Attendance</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value blue" id="overall-attendance">75%</div>
+                        <div class="card-meta">
+                            <i data-lucide="trending-up"></i>
+                            Across all subjects
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Total Subjects</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value purple" id="total-subjects">4</div>
+                        <div class="card-meta">Active courses</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Classes Attended</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value green" id="classes-attended">98</div>
+                        <div class="card-meta">This month</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Low Attendance</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value orange" id="low-attendance-count">0</div>
+                        <div class="card-meta">Subjects below 75%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject-wise Analytics -->
+            <div class="analytics-card">
+                <div class="card-header">
+                    <div class="card-title-with-icon">
+                        <i data-lucide="calendar"></i>
+                        Subject-wise Attendance Analytics
+                    </div>
+                    <div class="card-description">
+                        Detailed breakdown of your attendance across all subjects
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div id="subject-analytics" class="subject-analytics"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professor Dashboard -->
+    <div id="professor-dashboard" class="page">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="header-content">
+                <div class="header-info">
+                    <div class="header-icon professor-icon">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div>
+                        <h1 class="header-title professor-title">Professor Dashboard</h1>
+                        <p class="header-subtitle">Attendance Management System</p>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i data-lucide="log-out"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Overview Cards -->
+            <div class="overview-cards">
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Total Students</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value purple" id="prof-total-students">5</div>
+                        <div class="card-meta">
+                            <i data-lucide="users"></i>
+                            Active students
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Subjects</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value blue" id="prof-total-subjects">4</div>
+                        <div class="card-meta">Active courses</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Overall Attendance</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value green" id="prof-overall-attendance">75%</div>
+                        <div class="card-meta">All subjects</div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="card-header">
+                        <div class="card-title">Classes Conducted</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-value indigo" id="prof-classes-conducted">30</div>
+                        <div class="card-meta">This month</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Marking -->
+            <div class="attendance-card">
+                <div class="card-header">
+                    <div class="card-title-with-icon">
+                        <i data-lucide="calendar"></i>
+                        Mark Attendance
+                    </div>
+                    <div class="card-description">
+                        Select subject and date to mark student attendance
+                    </div>
+                </div>
+                <div class="card-content">
+                    <!-- Controls -->
+                    <div class="attendance-controls">
+                        <div class="control-group">
+                            <label>Subject</label>
+                            <select id="subject-select" onchange="updateAttendanceTable()">
+                                <option value="">Select a subject</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Date</label>
+                            <input type="date" id="date-select" onchange="updateAttendanceTable()">
+                        </div>
+                    </div>
+
+                    <!-- Quick date selection -->
+                    <div class="quick-dates">
+                        <label>Quick Date Selection</label>
+                        <div id="quick-date-buttons" class="quick-date-buttons"></div>
+                    </div>
+
+                    <!-- Bulk actions -->
+                    <div id="bulk-actions" class="bulk-actions" style="display: none;">
+                        <button class="bulk-btn" onclick="markAllPresent()">
+                            <i data-lucide="check-circle"></i>
+                            Mark All Present
+                        </button>
+                        <button class="bulk-btn" onclick="markAllAbsent()">
+                            <i data-lucide="x-circle"></i>
+                            Mark All Absent
+                        </button>
+                    </div>
+
+                    <!-- Attendance table -->
+                    <div id="attendance-table-container">
+                        <div class="empty-state">
+                            <i data-lucide="calendar"></i>
+                            <p>Please select a subject to mark attendance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
